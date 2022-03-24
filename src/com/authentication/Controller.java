@@ -51,7 +51,7 @@ public class Controller {
 
     }
     public void loginSuccess(){
-        System.out.println("Welcome"+username+",You can the performance:");
+        System.out.println("Welcome "+username+",You can the performance:");
         Menu.loginSuccess();
         int choose=scanner.nextInt();
         scanner.nextLine();
@@ -80,7 +80,7 @@ public class Controller {
         password=scanner.nextLine();
         int count=0;
         for (int i=0;i<users.size();i++){
-            if (password.equals(users.get(i).getPassword())) {
+            if (password.equals(users.get(i).getPassword()) &&username.equals(users.get(i).getUsername())) {
                 count++;
                 boolean check=false;
                 String newPassword=null;
@@ -113,7 +113,7 @@ public class Controller {
                 String newUsername=scanner.nextLine();
                 for (int i=0;i<users.size();i++){
                     if (username.equals(users.get(i).getUsername())) {
-                        if (!username.equals(users.get(i).getUsername())){
+                        if (!newUsername.equals(users.get(i).getUsername())){
                             users.get(i).setUsername(newUsername);
                             username=newUsername;
                             System.out.println("Change Username Success");
@@ -204,11 +204,11 @@ public class Controller {
             try {
                 id = users.size() + 1;
                 System.out.println("Please enter username:");
-                newUsername = scanner.nextLine();
+                newUsername = scanner.next();
                 System.out.println("Please enter email:");
-                newEmail = Validate.validateEmail(scanner.nextLine());
+                newEmail = Validate.validateEmail(scanner.next());
                 System.out.println("Enter password");
-                newPassword = Validate.validatePassword(scanner.nextLine());
+                newPassword = Validate.validatePassword(scanner.next());
                 for (int i = 0; i < users.size(); i++) {
                     if (newUsername.equals(users.get(i).getUsername())) {
                         throw new RuntimeException("Username Already exist");
